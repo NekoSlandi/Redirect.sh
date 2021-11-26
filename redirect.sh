@@ -2,13 +2,18 @@
 # CRONJOB (sudo crontab -e):
 # * * * * * /path/to/this/script
 
-SCRIPT_PATH='/home/Username/scripts'
+# /////////////////////////////////////////////////////////
+#
+#				Add your Dyn DNS here
+DYN_ADRESS=''
+#
+#
+# /////////////////////////////////////////////////////////
+
+SCRIPT_PATH='$(dirname $(readlink -f $0))'
 #text file
 PORTFILE="$SCRIPT_PATH/ports.ini"
 IPFILE='currentip.store'
-
-# Add your Dyn DNS here
-DYN_ADRESS='	Add your Dynamic DNS here Example.com	'
 
 #Assign IP from resolving DynDNS to $DYN_IP
 DYN_IP="$(nslookup $DYN_ADRESS | grep 'Address: ' | cut -d ' ' -f2)"
