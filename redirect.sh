@@ -75,6 +75,6 @@ then
 	echo "$DYN_IP" > "$SCRIPT_PATH"/"$IPFILE"
 	
 	else
-		echo "IPs are equal"
+		#echo "IPs are equal"
 		exit 0
 fi
