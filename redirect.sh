@@ -14,6 +14,13 @@ SCRIPT_PATH="$(dirname $(readlink -f $0))"
 PORTFILE="$SCRIPT_PATH/ports.ini"
 IPFILE='currentip.store'
 
+if test $(cat /proc/sys/net/ipv4/ip_forward) -eq 0; then
+	printf "\n\033[0;31mEnable IPv4 Forwarding to use Iptable rules\n"
+        printf "set 'net.ipv4.ip_forward = 1' in /etc/sysctl.conf\n"
+	printf "and execute 'sysctl -p /etc/sysctl.conf' as sudo user"
+        printf "\033[0m\n\n"
+	exit 0
+fi
 if  ! test -f "$IPFILE"; then
 	touch "$IPFILE"
 fi
